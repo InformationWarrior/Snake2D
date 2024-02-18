@@ -32,6 +32,7 @@ namespace Snake
         {
             AudioManager.PlayMusic();
         }
+
         public void SetSnakeSpeed(SnakeSpeed speed)
         {
             CurrentSpeed = speed;

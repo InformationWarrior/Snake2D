@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace Snake
 {
@@ -12,6 +13,7 @@ namespace Snake
 
     public class AudioManager : MonoBehaviour
     {
+        [SerializeField] private List<Sound> sounds;
         [SerializeField] private AudioSource bgSource, sfxSource;
         [SerializeField] private GameObject[] soundBarFillers;
         [SerializeField] private AudioClip[] bgClips;
@@ -25,6 +27,7 @@ namespace Snake
 
         public void OnClickSound()
         {
+            PlaySfx("ButtonClick");
             if (clickCount > soundBarFillers.Length - 1)
             {
                 clickCount = -1;
@@ -45,12 +48,22 @@ namespace Snake
 
         public void ChangeMusic()
         {
+            PlaySfx("ButtonClick");
 
+        }
+
+        public void PlaySfx(string name)
+        {
+            Sound sound = sounds.Find(x => x.Name == name);
+            if (sound != null)
+            {
+                sfxSource.PlayOneShot(sound.clip);
+            }
         }
 
         private void InitialState()
         {
-            clickCount = 3;
+            clickCount = 2;
             UpdateVolume(clickCount);
             FillSoundBar(clickCount - 1);
         }

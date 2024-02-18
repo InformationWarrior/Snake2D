@@ -40,6 +40,7 @@ namespace Snake
 
             if (collision.CompareTag("Obstacles"))
             {
+                PlayFailSound();
                 ResetSnake();
             }
         }
@@ -67,19 +68,19 @@ namespace Snake
 
         private void PlayerInput()
         {
-            if (Input.GetKeyDown(KeyCode.W))
+            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
             {
                 direction = Vector2.up;
             }
-            else if (Input.GetKeyDown(KeyCode.A))
+            else if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
             {
                 direction = Vector2.left;
             }
-            else if (Input.GetKeyDown(KeyCode.S))
+            else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
             {
                 direction = Vector2.down;
             }
-            else if (Input.GetKeyDown(KeyCode.D))
+            else if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
             {
                 direction = Vector2.right;
             }
@@ -103,6 +104,11 @@ namespace Snake
         private void UpdateScore(int score)
         {
             GameManager.Instance.UIManager.DisplayScore(score);
+        }
+
+        private void PlayFailSound()
+        {
+            GameManager.Instance.AudioManager.PlaySfx("Fail");
         }
     }
 }

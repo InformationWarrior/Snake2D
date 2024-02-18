@@ -31,19 +31,16 @@ namespace Snake
 
         public void PauseGame()
         {
+            PlayButtonClick();
             TogglePauseUI(false);
             Time.timeScale = 0f;
         }
 
         public void ResumeGame()
         {
+            PlayButtonClick();
             TogglePauseUI(true);
             Time.timeScale = 1f;
-        }
-
-        public void StopGame()
-        {
-
         }
 
         private void TogglePauseUI(bool status)
@@ -54,6 +51,7 @@ namespace Snake
 
         public void ToggleSpeedPanel()
         {
+            PlayButtonClick();
             speedPanelStatus = !speedPanelStatus;
             speedPanel.SetActive(speedPanelStatus);
             ToggleInvisibleButton(speedPanelStatus);
@@ -61,6 +59,7 @@ namespace Snake
 
         public void CloseSpeedPanel()
         {
+            PlayButtonClick();
             speedPanelStatus = false;
             speedPanel.SetActive(false);
             ToggleInvisibleButton(false);
@@ -73,7 +72,13 @@ namespace Snake
 
         public void SetSpeed(int speed)
         {
+            PlayButtonClick();
             GameManager.Instance.SetSnakeSpeed((SnakeSpeed)speed);
+        }
+
+        private void PlayButtonClick()
+        {
+            GameManager.Instance.AudioManager.PlaySfx("ButtonClick");
         }
     }
 }

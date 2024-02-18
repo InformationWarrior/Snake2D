@@ -23,8 +23,14 @@ namespace Snake
         {
             if (collision.CompareTag("Player"))
             {
+                PlayWinSound();
                 GenerateRandomPosition();
             }
+        }
+
+        private void PlayWinSound()
+        {
+            GameManager.Instance.AudioManager.PlaySfx("Win");
         }
     }
 }
