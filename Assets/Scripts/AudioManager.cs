@@ -1,7 +1,6 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+
 namespace Snake
 {
     [Serializable]
@@ -13,38 +12,61 @@ namespace Snake
 
     public class AudioManager : MonoBehaviour
     {
-        [SerializeField] private List<Sound> sounds = new();
         [SerializeField] private AudioSource bgSource, sfxSource;
-        [SerializeField] private AudioClip[] bgAudioClips;
         [SerializeField] private GameObject[] soundBarFillers;
-        
-        private int currentTrackIdx = 0;
+        [SerializeField] private AudioClip[] bgClips;
+
         private int clickCount;
-        
+
         private void Start()
         {
-            clickCount = 0;
-            UpdateVolume(clickCount);
-            
+            InitialState();
         }
 
+        public void OnClickSound()
+        {
+            if (clickCount > soundBarFillers.Length - 1)
+            {
+                clickCount = -1;
+                ResetSoundBars();
+            }
+            clickCount++;
+            UpdateVolume(clickCount);
+            FillSoundBar(clickCount - 1);
+        }
+
+        public void PlayMusic()
+        {
+            bgSource.loop = true;
+            bgSource.playOnAwake = true;
+            bgSource.clip = bgClips[0];
+            bgSource.Play();
+        }
+
+        public void ChangeMusic()
+        {
+
+        }
+
+        private void InitialState()
+        {
+            clickCount = 3;
+            UpdateVolume(clickCount);
+            FillSoundBar(clickCount - 1);
+        }
 
         private void UpdateVolume(int volume)
         {
             float volumeLevel = (float)volume / soundBarFillers.Length;
-            print(volumeLevel + " >>> volume");
             bgSource.volume = volumeLevel;
-        }
-        
-
-        public void OnClickSound()
-        {
-
         }
 
         private void FillSoundBar(int index)
         {
-            soundBarFillers[index].SetActive(true);
+            for (int i = 0; i <= index; i++)
+            {
+                soundBarFillers[i].SetActive(true);
+            }
         }
 
         private void ResetSoundBars()
@@ -54,21 +76,5 @@ namespace Snake
                 soundBarFillers[i].SetActive(false);
             }
         }
-
-        public void PlayMusic()
-        {
-            bgSource.loop = true;
-            bgSource.playOnAwake = true;
-            bgSource.clip = bgAudioClips[currentTrackIdx];
-            bgSource.Play();
-            Invoke(nameof(CheckTrackUpdated), bgSource.clip.length);
-        }
-
-        private void CheckTrackUpdated()
-        {
-            currentTrackIdx = (currentTrackIdx + 1) % bgAudioClips.Length;
-            PlayMusic();
-        }
-
     }
 }

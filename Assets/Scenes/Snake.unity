@@ -1069,7 +1069,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _uiManager: {fileID: 1439369053}
-  _audioManager: {fileID: 0}
+  _audioManager: {fileID: 767012669}
 --- !u!1 &288618922
 GameObject:
   m_ObjectHideFlags: 0
@@ -2000,20 +2000,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0ac9c13b48de4552a68e9be1ed13ad4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds:
-  - Name: Win
-    clip: {fileID: 0}
-  - Name: Fail
-    clip: {fileID: 0}
   bgSource: {fileID: 1325459779}
   sfxSource: {fileID: 122168230}
-  bgAudioClips: []
   soundBarFillers:
   - {fileID: 1242663016}
   - {fileID: 553005940}
   - {fileID: 604795148}
   - {fileID: 209936575}
   - {fileID: 731394736}
+  bgClips:
+  - {fileID: 8300000, guid: 881684c8a22cd45c48b4ce69afa49ca2, type: 3}
+  - {fileID: 8300000, guid: 6a375aaac8a234e7c949a865dcb382fd, type: 3}
+  - {fileID: 8300000, guid: 3255badfec9d54b0bab6b680dedf7078, type: 3}
 --- !u!1 &779303122
 GameObject:
   m_ObjectHideFlags: 0
@@ -3691,7 +3689,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 881684c8a22cd45c48b4ce69afa49ca2, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -5146,7 +5144,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &4584988720123228336

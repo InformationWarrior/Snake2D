@@ -12,7 +12,7 @@ namespace Snake
         [SerializeField] private AudioManager _audioManager;
 
         public UIManager UIManager { get => _uiManager; }
-        public AudioManager AudioManager { get => AudioManager; }
+        public AudioManager AudioManager { get => _audioManager; }
 
         public static GameManager Instance = null;
 
@@ -28,6 +28,10 @@ namespace Snake
             }
         }
 
+        private void Start()
+        {
+            AudioManager.PlayMusic();
+        }
         public void SetSnakeSpeed(SnakeSpeed speed)
         {
             CurrentSpeed = speed;
