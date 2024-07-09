@@ -210,7 +210,7 @@
       }
     },
     "com.unity.visualscripting": {
-      "version": "1.9.1",
+      "version": "1.9.4",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -218,6 +218,13 @@
         "com.unity.modules.jsonserialize": "1.0.0"
       },
       "url": "https://packages.unity.com"
+    },
+    "com.wooshii.hierarchydecorator": {
+      "version": "https://github.com/WooshiiDev/HierarchyDecorator.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "2590c6a14a7230b8571383c379124c32d0712090"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",
